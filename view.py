@@ -36,26 +36,26 @@ def post():
         jsonify({"error":"There was an error please contact the administrator"})        
 
 
-def read_name_list(id):
+def read_name_list(name):
     """
     get Shipment
     """
     try:
-        shipment = Item.query.filter_by(id=id).first()
-        shipment_schema = ItemSchema()
+        shipment = Item.query.filter_by(name=name).all()
+        shipment_schema = ItemSchema(many=True)
         return shipment_schema.jsonify(shipment)
     except Exception as e:
         jsonify({"error":"There was an error please contact the administrator"})
 
-def put(id):
+def put(name):
     """
     Update shipment
     """
     try:
             
         data = request.get_json()
-        shipment = Item.query.filter_by(id=id).first()
-        shipment = Item.query.filter_by(id=id)
+        shipment = Item.query.filter_by(name=name, state='in').first()
+        shipment = Item.query.filter_by(name=name)
         shipment.update(data)
         db.session.commit()
                 

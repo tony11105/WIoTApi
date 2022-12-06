@@ -55,25 +55,34 @@ paths:
               $ref: '#/components/schemas/itemItem'
         description: adds a person state in_time and out_time
   
-  /api/item/read/{id}:
+  /api/item/read/{name}:
     get:
-      operationId: view.read_name_list
       tags:
         - item
-      summary: "Read one person"
+      summary: searches item
+      operationId: view.read_name_list
+      description: |
+        By passing in the appropriate options, you can search for
+        available item in the system
       parameters:
-        - name: id
+        - name: name
           in: path
-          description: item ID
+          description: item name
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
-        "200":
-          description: "Successfully read person"
-  
-  /api/item/update/{id}:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/itemItem'
+        '400':
+          description: bad input parameter
+  /api/item/update/{name}:
     put:
       operationId: view.put
       tags:
@@ -81,13 +90,12 @@ paths:
       summary: Update a item in the people list
       description: Update a item in the items list
       parameters:
-        - name: id
+        - name: name
           in: path
-          description: item ID
+          description: item name
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         200:
           description: Successfully updated a item in items list
