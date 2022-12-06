@@ -25,5 +25,3 @@ sudo reboot
  ./build_apiSvc.sh
  ```
 檢查是否啟動
-```
-```
