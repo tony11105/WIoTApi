@@ -21,3 +21,9 @@ sudo reboot
  登入後先創建新的database，名稱openapi。
  修改app_config.py跟create.py內MySQL的ip。
  ### Step 3.
+ ```
+ ./build_apiSvc.sh
+ ```
+檢查是否啟動
+```
+```

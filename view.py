@@ -41,8 +41,8 @@ def read_name_list(name):
     get Shipment
     """
     try:
-        shipment = Item.query.filter_by(name=name).all()
-        shipment_schema = ItemSchema(many=True)
+        shipment = Item.query.filter_by(name=name, state='in').first()
+        shipment_schema = ItemSchema()
         return shipment_schema.jsonify(shipment)
     except Exception as e:
         jsonify({"error":"There was an error please contact the administrator"})
